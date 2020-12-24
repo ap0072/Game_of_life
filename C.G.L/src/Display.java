@@ -34,10 +34,7 @@ public class Display {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Display(boolean[][] first,int size) {
-		// TODO Auto-generated constructor stub
-		
-	}
+
 
 
 

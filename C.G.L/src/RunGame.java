@@ -52,45 +52,7 @@ public class RunGame extends Display {
 		int  l[][]=new int[size][size];
 	}
 	
-	public static void main(String[] args) {
-		RunGame c=new RunGame(10);
-		
-		
-		Board b= new Board(c.size);
-		
-		
-		
-		Display d=new Display();
-		
-		d.printBoard(b.first,c.size);
-		
-		
-		
-		
-		
-		
-		 c.m=b.createBoard(c.size,c.l);
-		 d.printBoard( c.m,c.size);
-		
-		 c.alivecount=b.aliveCount(c.m,c.size);
-		 
-		 //System.out.println(c.alivecount);
-		 
-//		 while(c.alivecount!=0) {
-//			 d.printBoard( c.m,c.size);
-//			 
-//			 c.n=b.nextBoard(c.size,c.m);
-//			 c.alivecount=b.aliveCount(c.n, c.size);
-//			 c.m=c.n;
-//			 
-//		 }
-		
-		
-		
-		 c.n=b.nextBoard(c.size,c.m);
-			
-			
-			d.printBoard( c.n,c.size);
+	
 			
 		
 		
@@ -98,7 +60,7 @@ public class RunGame extends Display {
 	}
 
 
-}
+
 
 
 
