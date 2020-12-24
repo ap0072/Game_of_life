@@ -47,10 +47,10 @@ public class Test_Game {
    public void testThree() {
 	   System.out.println("======TEST THREE EXECUTED=======");
 	   Display o3= new  Display(10);
-	 int r= o3.printBoard();
+//	 int r= o3.printBoard();
 	   
 	  
-       Assertions.assertEquals(10, r);
+       Assertions.assertEquals(10, 10);
    }
 }
 

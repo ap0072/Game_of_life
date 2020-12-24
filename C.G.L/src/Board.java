@@ -18,6 +18,7 @@ int b1;
 int c1;
 int d1;
 int size;
+boolean first[][];
 	
 public Board(int a,int b,int c,int d) {
 	a1=a;
@@ -28,9 +29,13 @@ public Board(int a,int b,int c,int d) {
 public Board(int size) {
 	// TODO Auto-generated constructor stub
 	this.size=size;
+	first=new boolean[size][size];
+	System.out.println("A Current Generation Created");
+	
 }
 public int  position() {
 	
-	return a+b;
+	return a1+b1;
 
+}
 }
