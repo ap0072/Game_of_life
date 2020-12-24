@@ -44,11 +44,7 @@ public int[][]  createBoard(int n, int l[][]) {
 
 
 
-public int  position() {
-	
-	return a1+b1;
 
-}
 public int[][] nextBoard(int size2, int[][] m1) {
 	/**
 	 * this is nextBoard method used for generating next generation of live cells  

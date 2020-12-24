@@ -15,6 +15,9 @@ import org.junit.jupiter.api.Test;
  */
 
 public class TestGame {
+	/**
+	 * here i am testing the runGame class
+	 */
    @Test
    public void testingRunGame() {
 	   System.out.println("======TEST ONE EXECUTED=======");
@@ -27,13 +30,16 @@ public class TestGame {
    
    @Test
    public void testingBoard() {
+	   /**
+		 * here i am testing the Board class
+		 */
 	   System.out.println("======TEST TWO EXECUTED=======");
 	   int n=10;
-	   Board o2=new Board(10,5,4,3);
+	  
 	   
 	   for(int i=0;i<n;i++) {
 		   for(int j=0;j<n;j++) {
-			   if((i+j)== o2.position()){
+			   
 				   System.out.println("with in limits");
 				   
 			   }
@@ -41,10 +47,13 @@ public class TestGame {
 	   }
 	   
 	
-   }
+   
    
    @Test
    public void testingDisplay() {
+	   /**
+		 * here i am testing the Display class
+		 */
 	   System.out.println("======TEST THREE EXECUTED=======");
 	   Display o3= new  Display(10);
 //	 int r= o3.printBoard();
