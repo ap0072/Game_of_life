@@ -31,6 +31,12 @@
 
 
 public class RunGame extends Display {
+	
+	/**
+	 * this is RunGame class generally which contains 
+	 * vairables size
+	 * here i have taken three 2d arrays to generate three generations of Game
+	 */
 	 int size;
 	 
 	 int l[][];
@@ -38,6 +44,10 @@ public class RunGame extends Display {
 	 int n[][];
 	 int alivecount;
 	RunGame(int size){
+		
+	/**
+	 * in this constructor we are declaring size of board to be created
+	 */
 		this.size=size;
 		int  l[][]=new int[size][size];
 	}
