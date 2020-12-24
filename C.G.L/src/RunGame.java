@@ -30,15 +30,15 @@
 
 
 
-public class Run_Game {
+public class RunGame {
 	 int size;
 
-	Run_Game(int size){
+	RunGame(int size){
 		this.size=size;
 	}
 	
 	public static void main(String[] args) {
-		Run_Game c=new Run_Game(10);
+		RunGame c=new RunGame(10);
 		
 		Board b= new Board(c.size);
 		

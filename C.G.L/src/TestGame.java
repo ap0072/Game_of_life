@@ -14,19 +14,19 @@ import org.junit.jupiter.api.Test;
  * @version: 1.0
  */
 
-public class Test_Game {
+public class TestGame {
    @Test
-   public void testOne() {
+   public void testingRunGame() {
 	   System.out.println("======TEST ONE EXECUTED=======");
 	   
-	   Run_Game o1=new Run_Game(10);
+	   RunGame o1=new RunGame(10);
 	   
 	   Assertions.assertEquals(10,o1.size );
 	   
    }
    
    @Test
-   public void testTwo() {
+   public void testingBoard() {
 	   System.out.println("======TEST TWO EXECUTED=======");
 	   int n=10;
 	   Board o2=new Board(10,5,4,3);
@@ -44,7 +44,7 @@ public class Test_Game {
    }
    
    @Test
-   public void testThree() {
+   public void testingDisplay() {
 	   System.out.println("======TEST THREE EXECUTED=======");
 	   Display o3= new  Display(10);
 //	 int r= o3.printBoard();
