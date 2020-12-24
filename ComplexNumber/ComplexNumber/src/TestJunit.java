@@ -7,7 +7,7 @@ public class TestJunit {
    public void testComplexNumberOne() {
 	   ComplexNumber cn1 = new ComplexNumber(3, 4);
 	   ComplexNumber cn2 = new ComplexNumber(3, -8);
-       System.out.println("======TEST ONE EXECUTED");
+       System.out.println("======TEST ONE EXECUTED=======");
        Assertions.assertEquals("6.0 - 4.0i", cn1.add(cn2).toString());
    }
    
