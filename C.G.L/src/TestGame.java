@@ -42,9 +42,17 @@ public class TestGame
 	   System.out.println("======TEST TWO EXECUTED=======");
 	   int n=10;
 	   int [][] d2=new int[10][10];
+	   int [][] d3=new int[10][10];
+	   for(int i=2;i<5;i++)
+	   {
+	        d3[i][3]=1;
+	        d3[i][2]=1;
+	    }
+	   
 	   b.createBoard(n, d2);
 	   b.nextBoard(10, d2);
 	   b.aliveCount(d2,n);
+	   b.aliveCount( d3,n);
 	   
 
    }
