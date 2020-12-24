@@ -30,7 +30,8 @@
 
 
 
-public class RunGame extends Display {
+public class RunGame  
+{
 	
 	/**
 	 * this is RunGame class generally which contains 
@@ -43,7 +44,8 @@ public class RunGame extends Display {
 	 int m[][];
 	 int n[][];
 	 int alivecount;
-	RunGame(int size){
+	RunGame(int size)
+	{
 		
 	/**
 	 * in this constructor we are declaring size of board to be created
@@ -55,9 +57,7 @@ public class RunGame extends Display {
 	
 			
 		
-		
-		
-	}
+}
 
 
 
