@@ -12,6 +12,11 @@
  */
 
 public class Display {
+	/**
+	 * this is Display class used for printing board to console
+	 * in this class i take one 2d empty array,
+	 * one size variable
+	 */
 
 	int b[][];
 	int size1;
@@ -23,6 +28,9 @@ public class Display {
 	}
 	
 	public Display() {
+		/** default constructor
+		 * 
+		 */
 		// TODO Auto-generated constructor stub
 	}
 
@@ -33,12 +41,15 @@ public class Display {
 
 
 
-//	public Display(boolean[][] createBoard,int size) {
-//		// TODO Auto-generated constructor stub
-//		printBoard(createBoard,size);
-//	}
+
 
 	public void printBoard(int [][] first,int size) {
+		/**
+		 * this is printBoard method used to print the board according to live cells in board
+		 * if there are live cells then output will be '*' 
+		 * other wise output will be '.'
+		 */
+		
 		int n=size;
 		b=first;
 		count+=1;
