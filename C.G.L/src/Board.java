@@ -1,7 +1,7 @@
 
 /**
  * The Board Game class should provide basic operations such as 
- * creating a board with taking initall position from Run_Game class 
+ * creating a board with taking initall position from createBoard method in this class
  * 
  * 
  * @author Sridevi. K.
@@ -13,19 +13,12 @@
 
 public class Board extends Display {
 
-int  a1;
-int b1;
-int c1;
-int d1;
+
 int size;
 int first[][];
 	
-public Board(int a,int b,int c,int d) {
-	a1=a;
-			b1=b;
-			c1=c;
-			d1=d;
-}
+
+
 public Board(int size) {
 	// TODO Auto-generated constructor stub
 	this.size=size;
@@ -35,6 +28,10 @@ public Board(int size) {
 	
 }
 public int[][]  createBoard(int n, int l[][]) {
+	/**
+	 * this is createBoard method which take a intial positions that is required to start the game
+	 * 
+	 */
     size=n;
     l=new int[n][n]; 
     int [][] board=new int[n][n];
@@ -53,6 +50,10 @@ public int  position() {
 
 }
 public int[][] nextBoard(int size2, int[][] m1) {
+	/**
+	 * this is nextBoard method used for generating next generation of live cells  
+	 */
+	
 	// TODO Auto-generated method stub
 	int alive;
 	int size3=size2;
@@ -93,6 +94,9 @@ public int[][] nextBoard(int size2, int[][] m1) {
 	
 }
 public int aliveCount(int[][] m, int size4) {
+	/**
+	 * in this alivecount we count no of alive cells in present board
+	 */
 	// TODO Auto-generated method stub
 	int alive = 0;
 	for(int l=0;l<size4;l++){
