@@ -36,13 +36,13 @@ public class RunGame
 	/**
 	 * this is RunGame class generally which contains 
 	 * vairables size
-	 * here i have taken three 2d arrays to generate three generations of Game
+	 * Here I have taken one 2d arrays to generate  Game of life.
 	 */
 	 int size;
 	 
-	 int l[][];
-	 int m[][];
-	 int n[][];
+	 int array1[][];
+//	 int m[][];
+//	 int n[][];
 	 int alivecount;
 	RunGame(int size)
 	{
@@ -51,7 +51,7 @@ public class RunGame
 	 * in this constructor we are declaring size of board to be created
 	 */
 		this.size=size;
-		int  l[][]=new int[size][size];
+		int  array1[][]=new int[size][size];
 	}
 	
 	

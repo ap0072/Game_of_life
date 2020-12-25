@@ -2,9 +2,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * The Test Game class should provide basic operations such as 
- * Testing the input size of the board
- * check the positions of live cells initially assigned with in board
+ * In this Test Game class here i  provide basic operations such as 
+ * Testing the input size of the board 
+ * generating next generation boards using RunGame,Board,Display classes.
  * verification of size of board 
  * 
  * @author Sridevi. K.
@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 public class TestGame 
 {
 	/**
-	 * here i am testing the runGame class
+	 * Here i am testing the runGame class
 	 */
    @Test
    public void testingRunGame() 
@@ -36,7 +36,7 @@ public class TestGame
    public void testingBoard() 
    {
 	   /**
-		 * here i am testing the Board class
+		 * Here i am testing the Board class
 		 */
 	   Board b= new Board(10);
 	   System.out.println("======TEST TWO EXECUTED=======");
@@ -49,12 +49,11 @@ public class TestGame
 	        d3[i][2]=1;
 	    }
 	   
-	   b.createBoard(n, d2);
+	   b.createBoard(n);
 	   b.nextBoard(10, d2);
-	   b.aliveCount(d2,n);
-	   b.aliveCount( d3,n);
+	   b.aliveCount(d2);
+	   b.aliveCount( d3);
 	   
-
    }
 	   
 	
@@ -64,7 +63,7 @@ public class TestGame
    public void testingDisplay() 
    {
 	   /**
-		 * here i am testing the Display class
+		 * Here i am testing the Display class
 		 */
 	   System.out.println("======TEST THREE EXECUTED=======");
 	   Display o3= new  Display(10);
@@ -95,15 +94,15 @@ public class TestGame
 	   }
 	    
 
-	   o3.printBoard(d,10);
+	   o3.printBoard(d);
 	   
-	   o3.printBoard(e,10);
+	   o3.printBoard(e);
 	   
-	   o3.printBoard( b.nextBoard(10, e), 10);
+	   o3.printBoard( b.nextBoard(10, e));
 	   
-	   o3.printBoard( b.nextBoard(10, f), 10);
+	   o3.printBoard( b.nextBoard(10, f));
 	   
-	   o3.printBoard( b.nextBoard(10, g), 10);
+	   o3.printBoard( b.nextBoard(10, g));
 	   //System.out.println();
 	  
        Assertions.assertEquals(10, 10);

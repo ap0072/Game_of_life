@@ -14,47 +14,52 @@
 public class Display 
 {
 		/**
-		 * this is Display class used for printing board to console
-		 * in this class i take one 2d empty array,
-		 * one size variable
+		 * This is Display class used for printing board to console
+		 * in this class I take one 2d empty array output board,
+		 * one size variable to store size of board
+		 * count variable to give user clarity about printing generation 1 or generation 2
+		 * printBoard method to print board.
 		 */
 	
-		int b[][];
-		int size1;
+		int outputboard[][];
+		int size;
 		int count=-1;
 	
 	
 		public Display(int n) 
 		{
-			size1=n;
+			size=n;
 		}
 	
-		public Display() 
-		{
-			/** default constructor
-			 * 
-			 */
-			// TODO Auto-generated constructor stub
-		}
+//		public Display() 
+//		{
+//			/** default constructor
+//			 * 
+//			 */
+//			// TODO Auto-generated constructor stub
+//		}
 
 
-		public void printBoard(int [][] first,int size) 
+		public void printBoard(int [][] inputboard) 
 		{
 			/**
-			 * this is printBoard method used to print the board according to live cells in board
-			 * if there are live cells then output will be '*' 
-			 * other wise output will be '.'
+			 * This is printBoard method used to print the board according to live cells in board
+			 * if there are any live cells then output will be printed as '*' 
+			 * other wise output will be printed as '.'
+			 * 
+			 * here input board is passed as parameter and output board is printed based on required output format.
+			 * 
 			 */
 			
-			int n=size;
-			b=first;
+			
+			outputboard=inputboard;
 			count+=1;
 			System.out.println("Genration : "+count);
-			for(int i=0;i<n;i++) 
+			for(int i=0;i<inputboard.length;i++) 
 			{
-				   for(int j=0;j<n;j++) 
+				   for(int j=0;j<inputboard[0].length;j++) 
 				   {
-					   if(b[i][j]==0)
+					   if(outputboard[i][j]==0)
 					   {
 						   System.out.print(".");
 						   
@@ -64,7 +69,7 @@ public class Display
 						   System.out.print("*");
 					   }
 					   
-					   if(j<n-1) 
+					   if(j<inputboard[0].length-1) 
 					   {
 						   System.out.print("");
 					   }
