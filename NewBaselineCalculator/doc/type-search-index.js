@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"baselineLongCalculator","l":"CalculatorValue"},{"p":"baselineLongCalculator","l":"Mainline"},{"p":"baselineLongCalculator","l":"TheLongCalculator"}];updateSearchResults();
