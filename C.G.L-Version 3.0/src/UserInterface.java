@@ -2,11 +2,12 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
-
 import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
@@ -16,9 +17,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 
 /*******
  * <p> Title: UserInterface Class. </p>
@@ -26,18 +24,14 @@ import javafx.scene.canvas.GraphicsContext;
  * <p> Description: A JavaFX demonstration application: This controller class describes the user
  * interface for the Conway's Game of Life </p>
  * 
- * <p> Copyright: Lynn Robert Carter Â© 2018-05-06 </p>
+ * <p> Copyright: Lynn Robert Carter © 2018-05-06 </p>
  * 
  * @author Lynn Robert Carter
- * 
- * @author prasanth cpk
  * 
  * @version 2.03	2018-05-07 An implementation baseline for JavaFX graphics
  * 
  */
 public class UserInterface {
-	
-	GraphicsContext graphics;
 	
 	/**********************************************************************************************
 
@@ -54,12 +48,12 @@ public class UserInterface {
 	private int boardSizeHeight = (int)(windowSizeHeight)/cellSize;
 	private int marginWidth = 20;
 
-	// The User Interface widgets used to control the user interface and start a;nd stop the simulation
-	private Label label_FileName = new Label("Enter the name of the game's file : ");
+	// The User Interface widgets used to control the user interface and start and stop the simulation
+	private Label label_FileName = new Label("Enter the name of the game's file here:");
 	private TextField text_FileName = new TextField();
-	private Button button_Load = new Button("Load Data");
-	private Button button_Start = new Button("Start Game");
-	private Button button_Stop = new Button("Stop Game");
+	private Button button_Load = new Button("Load the pattern");
+	private Button button_Start = new Button("Start");
+	private Button button_Stop = new Button("Stop");
 
 	// The attributes used to specify and assess the validity of the data file that defines the game
 	private String str_FileName;			// The string that the user enters for the file name
@@ -114,9 +108,9 @@ public class UserInterface {
 		window = theRoot;
 		
 		// Set the fill colors for the border frame for the game's output of the simulation
-		rect_outer.setFill(Color.BLUE);
-		rect_middle.setFill(Color.RED);
-		rect_inner.setFill(Color.BLACK);
+		rect_outer.setFill(Color.LIGHTGRAY);
+		rect_middle.setFill(Color.BLACK);
+		rect_inner.setFill(Color.WHITE);
 
 		// Label the text field that is to receive the file name.
 		setupLabelUI(label_FileName, "Arial", 18, ConwayMain.WINDOW_WIDTH-20, Pos.BASELINE_LEFT, 
@@ -133,22 +127,22 @@ public class UserInterface {
 
 		// Establish a GUI button the user presses when the file name have been entered and the
 		// code has verified that the data in the file is valid.
-		//setupButtonUI(button_Load, "Arial", 18, 100, Pos.BASELINE_LEFT, ConwayMain.WINDOW_WIDTH - 275,  
-		//		controlPanelHeight + 24);
+		setupButtonUI(button_Load, "Arial", 18, 100, Pos.BASELINE_LEFT, ConwayMain.WINDOW_WIDTH - 275,  
+				controlPanelHeight + 24);
 		
 		// Establish the link between the button widget and a routine that loads the data into a
 		// Board and displays the data to the user.
-		//button_Load.setOnAction((event) -> { loadImageData(); });
+		button_Load.setOnAction((event) -> { loadImageData(); });
 
 		// Establish a GUI button that the user presses to start the simulation
-		setupButtonUI(button_Start, "Arial", 18, 50, Pos.BASELINE_LEFT, ConwayMain.WINDOW_WIDTH - 150,  
+		setupButtonUI(button_Start, "Arial", 18, 50, Pos.BASELINE_LEFT, ConwayMain.WINDOW_WIDTH - 80,  
 				controlPanelHeight + 24);
 		
 		// Link the start button to the routine that sets up the simulation to run and starts it
 		button_Start.setOnAction((event) -> { startConway(); });
 
 		// Establish a GUI button that the user can press once the simulation starts to stop it
-		setupButtonUI(button_Stop, "Arial", 18, 50, Pos.BASELINE_LEFT, ConwayMain.WINDOW_WIDTH - 150,  
+		setupButtonUI(button_Stop, "Arial", 18, 50, Pos.BASELINE_LEFT, ConwayMain.WINDOW_WIDTH - 80,  
 				controlPanelHeight + 24);
 		
 		// Link the stop button to the routine that stops the simulation and terminates the program
@@ -156,8 +150,8 @@ public class UserInterface {
 		button_Stop.setOnAction((event) -> { stopConway(); });
 
 		// Disable the buttons (They will appear grayed out)
-		//button_Load.setDisable(true);
-		button_Start.setDisable(false);
+		button_Load.setDisable(true);
+		button_Start.setDisable(true);
 
 		// The following set up the control panel messages for messages and information about errors
 		setupLabelUI(message_FileFound, "Arial", 18, 150, Pos.BASELINE_LEFT, 350, controlPanelHeight);
@@ -174,7 +168,7 @@ public class UserInterface {
 		// Place all of the just-initialized GUI elements into the pane with the exception of the
 		// Stop button.  That widget will replace the Start button, once the Start has been pressed
 		theRoot.getChildren().addAll(rect_outer, rect_middle, rect_inner, label_FileName, text_FileName, 
-				 button_Start, message_FileFound, message_FileNotFound, message_ErrorDetails);
+				button_Load, button_Start, message_FileFound, message_FileNotFound, message_ErrorDetails);
 	}
 
 	
@@ -246,8 +240,8 @@ public class UserInterface {
 					message_FileFound.setText("File found and the contents are valid!");
 					message_ErrorDetails.setText("");
 					message_FileNotFound.setText("");
-					//button_Load.setDisable(true);		// Enable the Start button
-					button_Start.setDisable(false);					
+					button_Load.setDisable(false);		// Enable the Start button
+					button_Start.setDisable(true);					
 				}
 				
 				// If the methods returns false, it means there is a problem with input file
@@ -255,8 +249,8 @@ public class UserInterface {
 					message_FileFound.setText("");
 					message_FileNotFound.setText("File found, but the contents are not valid!");
 					message_ErrorDetails.setText(errorMessage_FileContents);
-					//button_Load.setDisable(true);		// Keep the buttons disabled
-					button_Start.setDisable(false);
+					button_Load.setDisable(true);		// Keep the buttons disabled
+					button_Start.setDisable(true);
 				}
 
 			} catch (FileNotFoundException e) {			// If an exception is thrown, the file name
@@ -264,8 +258,8 @@ public class UserInterface {
 				message_FileNotFound.setText("File not found!");	// not enabled.
 				message_ErrorDetails.setText("");
 				scanner_Input = null;								
-				//button_Load.setDisable(true);			// Keep the buttons enabled
-				button_Start.setDisable(false);
+				button_Load.setDisable(true);			// Keep the buttons disabled
+				button_Start.setDisable(true);
 			}
 	}
 
@@ -275,19 +269,129 @@ public class UserInterface {
 	 */
 	private void loadImageData() {
 		try {
-			
-
 			// Your code goes here......
-			graphics.setFill(Color.LAVENDER);
-	        graphics.fillRect(0, 0,100, 100);
-	        
+			str_FileName=text_FileName.getText();
 			
+			System.out.println(text_FileName.getText());
+			Scanner scan = new Scanner((new FileReader(str_FileName)));
+			
+			String data = " ";
+			
+			
+			
+						
+			Integer myarray[]= new Integer[10];
+			ArrayList<Integer> MyList=new ArrayList<Integer>();
+			
+			int board[][] = new int[100][100];
+			
+			while(scan.hasNextLine()) 
+			{
+				
+				// System.out.println(scan.nextInt());
+				 MyList.add(scan.nextInt());
+				 
+				 
+			}
+			
+			//System.out.println(MyList);
+			
+			myarray=MyList.toArray(myarray);
+			
+			
+			
+			for(int j=0;j<myarray.length;j++) {
+				
+				System.out.println(myarray[j]);
+				
+			}
+			
+			System.out.println(myarray.length);
+			
+			//System.out.println(array1.length);
+			
+//			 for(int j=0;j<data.length();j++) 
+//				{
+//			 		if(data.charAt(j)!=' ') 
+//			 		{
+//				 		array1+=data.charAt(j);
+//				 		count++;
+//			 		}
+//			 		if(count==2) 
+//			 		{
+//				 		array2+=array1;
+//				 		//arrList.add(Integer.parseInt(array1));
+//				 		array1=" ";
+//				 		count=0;
+//			 		}
+
+			 	 
+//				}
+//			
+			 
+			 
+			 for(int j=0;j<myarray.length-2;j+=2) 
+			 {
+				 
+				 board[myarray[j]][myarray[j+1]]=1;
+				 
+			}
+			 
+			 for(int i=0;i<board.length;i++) 
+				{
+					   for(int j=0;j<board[0].length;j++) 
+					   {
+						   if(board[i][j]==0)
+						   {
+							   System.out.print(".");
+							   
+						   }
+						   else 
+						   {
+							   System.out.print("*");
+						   }
+						   
+						   if(j<board[0].length-1) 
+						   {
+							   System.out.print("");
+						   }
+						  
+					   }
+					   System.out.println();
+				   }
+			 
+			 
+//			 for(int j=1;j<array2.length();j++) 
+//			 {
+//				if(array2.charAt(j)!=' ') {
+//				 array3+=array2.charAt(j);
+//				}
+//			}
+			
+//			 System.out.println(array3.length());
+//			 
+//			 for(int j=0;j<array3.length();j++)
+//			 {
+//				System.out.println(array3.charAt(j));
+//				 }
+		 
+			 
+		 //System.out.println(Arrays.toString(array1));
+			 
+			 
+			 
 		}
+				 
+
+			
+			
+		
 		catch (Exception e)  {
 			// Since we have already done this check, this exception should never happen
+			System.out.println(e);
 		}
 		
-		//button_Load.setDisable(true);				// Disable the Load button, since it is done
+		button_Load.setDisable(true);				// Disable the Load button, since it is done
 		button_Start.setDisable(false);				// Enable the Start button
 	};												// and wait for the User to press it.
 
@@ -302,64 +406,15 @@ public class UserInterface {
 		// 50 milliseconds
 		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), ae -> runSimulation()));
 		timeline.setCycleCount(Animation.INDEFINITE);	// The animation runs until it is stopped
-		timeline.play();
-		
-		// Start the animation
-		final Canvas canvas = new Canvas(100, 100);
-		 GraphicsContext graphics = canvas.getGraphicsContext2D();
-		// button_Load.setDisable(true);				// Disable the Load button, since it is done
-		button_Start.setDisable(false);
-		
-	        
-		 System.out.println("\nConway's Game of Life "+"Started");
-		 draw();
-
+		timeline.play();								// Start the animation
 	};
 	
 	/**********
 	 * This method display the current state of the odd board and terminates the application
 	 */
-	   private void draw() {
-	        // clear graphics
-	        graphics.setFill(Color.LAVENDER);
-	        graphics.fillRect(0, 0, 10, 10);
-	        int cells[][] =new int[10][10];
-			 for(int i=2;i<5;i++)
-			   {
-			        cells[i][3]=1;
-			        cells[i][2]=1;
-			    }
-
-	        for (int i = 0; i < 10; i++) {
-	            for (int j = 0; j <10; j++) {
-	                if (cells[i][j]== 1) {
-	                	int cellsize=1;
-	                    // first rect will end up becoming the border
-	                    graphics.setFill(Color.gray(0.5, 0.5));
-	                    graphics.fillRect(i * cellSize, j * cellSize, cellSize, cellSize);
-	                    graphics.setFill(Color.PURPLE);
-	                    graphics.fillRect((i * cellSize) + 1, (j * cellSize) + 1, cellSize - 2, cellSize - 2);
-	                }else {
-	                    graphics.setFill(Color.gray(0.5, 0.5));
-	                    graphics.fillRect(i * cellSize, j * cellSize, cellSize, cellSize);
-	                    graphics.setFill(Color.LAVENDER);
-	                    graphics.fillRect((i * cellSize) + 1, (j * cellSize) + 1, cellSize - 2, cellSize - 2);
-	                }
-	            }
-	        }
-	    }
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	private void stopConway() {
 		// Your code goes here to display the current state of the board.
-		System.out.println("\nConway's Game of Life Ended\n");
+		System.out.println("Game is stopping....");
 		System.exit(0);
 	}
 
