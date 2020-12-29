@@ -185,6 +185,7 @@ public class CalculatorValue {
 		}
 		else {
 			errorMessage = "Zero Divison Error";
+			measuredValue=0;
 			getErrorMessage();
 		}
 	}

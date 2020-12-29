@@ -223,7 +223,7 @@ public class TheLongCalculator {
 		// Fetch the string the user entered into the operand's text field
 		String str = text_Operand2.getText();						// Get the text from the input field
 		
-		if (str == "0") {
+		if (str.equals("0")) {
 			label_errOperand2.setText("Zero Division Error");							// reset the error message
 			text_Result.setText("");								// clear the result text field
 			label_Result.setText("Result");							// clear the result text field
