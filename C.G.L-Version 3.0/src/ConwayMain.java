@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 * 
 * @author Lynn Robert Carter 
 * 
-* @author prasanth cpk
+*  @author prasanth kumar chaluvadi-2020501099
 * 
 * @version 2.03	2018-05-07 An implementation baseline for JavaFX graphics
 * 
@@ -40,7 +40,7 @@ public class ConwayMain extends Application {
 		//set Stage boundaries to the visual bounds so it does not total fill the screen 
 		WINDOW_WIDTH = primaryScreenBounds.getWidth() - primaryScreenBounds.getMinX() - 100;
 		WINDOW_HEIGHT = primaryScreenBounds.getHeight() - primaryScreenBounds.getMinY() - 100;
-		//final Canvas canvas = new Canvas(WINDOW_WIDTH, WINDOW_HEIGHT);
+		final Canvas canvas = new Canvas(WINDOW_WIDTH, WINDOW_HEIGHT);
 				
 		theStage.setTitle("Conway's Game of Life");				// Label the stage (a window)
 		

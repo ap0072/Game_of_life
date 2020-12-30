@@ -33,6 +33,8 @@ import javafx.scene.shape.Rectangle;
  * 
  * @author Lynn Robert Carter
  * 
+ * @author prasanth kumar chaluvadi-2020501099
+ * 
  * @version 2.03	2018-05-07 An implementation baseline for JavaFX graphics
  * 
  */
@@ -94,7 +96,7 @@ public class UserInterface {
 	private Pane evenCanvas = new Pane();			// Pane that holds its graphical representation
 
 	private boolean toggle = true;					// A two-state attribute that specifies which
-	
+	public Canvas canvas;
 													// is the previous Board and which is the new
 	
 	/**********************************************************************************************
@@ -120,14 +122,8 @@ public class UserInterface {
 		rect_middle.setFill(Color.BLACK);
 		rect_inner.setFill(Color.WHITE);
 		
-		double width=500;
-		double height=500;
 		
-		 
-		 
-		// GraphicsContext graphics = canvas.getGraphicsContext2D();
-
-	
+		this.canvas=canvas;
 
 		// Label the text field that is to receive the file name.
 		setupLabelUI(label_FileName, "Arial", 18, ConwayMain.WINDOW_WIDTH-20, Pos.BASELINE_LEFT, 
@@ -184,9 +180,6 @@ public class UserInterface {
 		
 		// Place all of the just-initialized GUI elements into the pane with the exception of the
 		// Stop button.  That widget will replace the Start button, once the Start has been pressed
-		
-		
-		
 		theRoot.getChildren().addAll(rect_outer, rect_middle, rect_inner, label_FileName, text_FileName, 
 				button_Load, button_Start, message_FileFound, message_FileNotFound, message_ErrorDetails);
 	}
@@ -201,7 +194,7 @@ public class UserInterface {
 	/**********
 	 * Private local method to initialize the standard fields for a label
 	 */
-	private void setupLabelUI(Label l, String ff, double f, double w, Pos p, double x, double y) {
+	private void setupLabelUI(Label l, String ff, double f, double w, Pos p, double x, double y){
 		l.setFont(Font.font(ff, f));
 		l.setMinWidth(w);
 		l.setAlignment(p);
@@ -287,77 +280,99 @@ public class UserInterface {
 	 * This method is called when the Load button is pressed. It tries to load the data onto the
 	 * board for the simulation.
 	 */
-	private void loadImageData() {
-		try {
-			
-		/*
-		 * 
-		 * Here i am taking this str_FileName variable as string to store the passed filename. like"test01"
-		 */
-			str_FileName=text_FileName.getText();
-			
-			System.out.println(text_FileName.getText());
-			
-		/*
-		 * Here i am taking this scanner object to scan data in file.
-		 * 
-		 */
-			
-			Scanner scan = new Scanner((new FileReader(str_FileName)));
-			
+	private void loadImageData() 
+	{
+		try 
+		{
 			
 			/*
 			 * 
-			 * Here i am taking this integer array myarray			
+			 * Here i am taking this str_FileName variable as string to store the passed filename. like"test01"
 			 */
-			Integer myarray[]= new Integer[100];
-			ArrayList<Integer> MyList=new ArrayList<Integer>();
-			
-			int board[][] = new int[100][100];
-			
-															
-			
-			while(scan.hasNextLine()) 
-			{
+				str_FileName=text_FileName.getText();
 				
-				 MyList.add(scan.nextInt());
-				 
-				 
-			}
-			
-			
-			
-	/*
-	 * this is converting ArrayList into a array 
-	 * 
-	 */
-			
-			myarray=MyList.toArray(myarray);
-			
-	/*
-	 * 
-	 * this is for loop for knowing the values in array
-	 * 		
-	 */
-			
-
-			 
-			 
-			 for(int j=0;j<myarray.length-2;j+=2) 
-			 {
-				 
-				 board[myarray[j]][myarray[j+1]]=1;
-				 
-			}
-			 
-			 board1=board;
+				System.out.println("File name is "+text_FileName.getText());
+				
+			/*
+			 * Here i am taking this scanner object to scan data in file.
+			 * 
+			 */
+				
+				Scanner scan = new Scanner((new FileReader(str_FileName)));
+				
+				
+				
+				/*
+				 * 
+				 * Here i am taking this integer arraylist  MyList			
+				 */
+				
+				ArrayList<Integer> MyList=new ArrayList<Integer>();
+				
+				/*
+				 * 
+				 * Here i am taking this integer board  2d array for initializing  livecells given in testfile 	
+				 */
+				
+				int board[][] = new int[100][100];
+				
+				int nextboard[][] = new int[100][100];
+				
+				while(scan.hasNextLine()) 
+				{
+					
+					// System.out.println(scan.nextInt());
+					 MyList.add(scan.nextInt());
+					 
+					 
+				}
+				
+				Integer myarray[]= new Integer[MyList.size()];
+				
+				//System.out.println(MyList);
+				
+				/*
+				 * this is converting ArrayList into a array 
+				 * 
+				 */
+				
+				myarray=MyList.toArray(myarray);
+				
+				/*
+				 * 
+				 * this is for loop for knowing the values in array
+				 * 		
+				 */
+				
+				for(int j=0;j<myarray.length;j++) 
+				{
+					
+					System.out.print(myarray[j]);
+					
+				}
+				
+				System.out.println("length"+myarray.length);
+				
+				/*
+				 * 
+				 * this is for loop for knowing the fetching values into board 2d array
+				 * 		
+				 */
+				
+				for(int j=0;j<myarray.length-2;j+=2) 
+				 {
+					 
+					 board[myarray[j]][myarray[j+1]]=1;
+					 
+				}
+				
+				board1=board;
 				 
 			 
 		}
-
-	
-		
-		catch (Exception e)  {
+				 
+		catch (Exception e)  
+		{
 			// Since we have already done this check, this exception should never happen
 			System.out.println(e);
 		}
@@ -375,7 +390,7 @@ public class UserInterface {
 		
 		// Start the simulation by means of an animation Timeline using a keyframe duration of 
 		// 50 milliseconds
-		System.out.println("Game started");
+		System.out.println("\nGame is starting....");
 		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), ae -> runSimulation()));
 		timeline.setCycleCount(Animation.INDEFINITE);	// The animation runs until it is stopped
 		timeline.play();								// Start the animation
@@ -394,131 +409,43 @@ public class UserInterface {
 	 * This method is run each time the timeline triggers it
 	 */
 	int cnt=0;
+	
+	
+
+	
+	
 	public void runSimulation()
 	{
 	
 		// Use the toggle to flip back and forth between the current generation and next generation boards.
 		
-		
-		
-		System.out.println("Generation  : "+cnt);
-		cnt++;
-		
-		display();
-    	
-        
-	}
-        
- public void display() 
- {
-		
-		// Your code goes here...
-		double width = 100;
-		double height =  100;
-		
-		double cellSize=10;
-		
-		
-		//GraphicsContext graphics = canvas.getGraphicsContext2D();
-				
-	      
-//		graphics.setFill(Color.LAVENDER);
-//        graphics.fillRect(0, 0, width, height);
-
-        
-        for(int i=0;i<board1.length;i++) 
-			{
-				   for(int j=0;j<board1[0].length;j++) 
-				   {
-					   if(board1[i][j]==0)
-					   {
-						   System.out.print(".");
-//						   graphics.setFill(Color.gray(0.5, 0.5));
-//						   graphics.fillRect(i * cellSize, j * cellSize, cellSize, cellSize);
-//						   graphics.setFill(Color.PURPLE);
-//						   graphics.fillRect((i * cellSize) + 1, (j *cellSize) + 1, cellSize - 2, cellSize - 2);
-//						   
-						   
-				   }
-				   else 
-					   {
-						   System.out.print("*");
-				   }
-					   
-					   if(j<board1[0].length-1) 
-					   {
-						   System.out.print("");
-					   }
-					  
-				   }
-				   System.out.println();
-			   }
+		int count=1;
+		int count1=1;
+		Display o3=new Display(100);
+		Board b= new Board(100); 
 		 
-       board1=nextBoard(board1); 
-            
-	    
 		
-	}
-        
-        
-  public int[][] nextBoard( int[][] currentboard) 
-	{
-		/**
-		 * This is nextBoard method used for generating next generation of Game.
-		 * in order to create next generation we have to follow certain rules like
-		 * if any live cell have >3 or <2 neighbors alive then this cell will die in next generation
-		 *  if any cell have exactly 2 or 3 neighbor alive cells then this cell will be alive in next generation
-		 *  if any cell which have three neighbors alive and if this cell is in dead state then due to reproductivity this cell will get life in next generation
-		 *  
-		 *  
-		 *  here in this nextGeneration i took variables such as alive to count no of alive neighbors 
-		 *  and a 2d array future of size passed in parameter
-		 *  with using currentboard and applying rules we are generating and returning  future board.
-		 *  
-		 */
-		
-		
-		// TODO Auto-generated method stub
-		int alive;
-		int size2=currentboard.length;
-		int [][] futureboard=new int[size2][size2];
-		
-		for(int l=1;l<size2-1;l++)
+		while(count1!=0) 
 		{
-	        for(int m=1;m<size2-1;m++)
-	        {
-	           alive=0;
-	            for(int i=-1;i<=1;i++)
-	                for(int j=-1;j<=1;j++)            
-	               
-	                	alive+=currentboard[l+i][m+j];
-	            alive-=currentboard[l][m];
-	            if((currentboard[l][m]==1) && (alive<2))
-	            {
-	            	futureboard[l][m]=0;
-	            }
-	            else if((currentboard[l][m]==1)&&(alive>3))
-	            {
-	
-	            	futureboard[l][m]=0;
-	
-	            } 
-	           else if((currentboard[l][m]==0)&&(alive==3) || (currentboard[l][m]==1)&&(alive==2) || (currentboard[l][m]==1)&&(alive==3))
-	           {
-	        	   futureboard[l][m]=1;
-	           }
-	           
-	            else
-	            {
-	            	futureboard[l][m]=currentboard[l][m];
-	            }
-	        }
+			   /*
+			    * 
+			    *With help of OOPs concept i created a object for Display class and Board class 
+			    *to print board and
+			    *to generate next board with giving current board as input 
+			    *
+			    *
+			    */ 
+			   
+			   System.out.println("\nGeneration : "+count);
+			   o3.printBoard(board1);
+			   board1=b.nextBoard(100, board1);
+			   count1=b.aliveCount(board1);
+			   count+=1;
+			   
 		}
-	
-		return futureboard;
-	
 	}
-     	
+       
+    	
      
 
 	/**********
