@@ -3,6 +3,8 @@
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -38,10 +40,13 @@ public class ConwayMain extends Application {
 		//set Stage boundaries to the visual bounds so it does not total fill the screen 
 		WINDOW_WIDTH = primaryScreenBounds.getWidth() - primaryScreenBounds.getMinX() - 100;
 		WINDOW_HEIGHT = primaryScreenBounds.getHeight() - primaryScreenBounds.getMinY() - 100;
-			
+		//final Canvas canvas = new Canvas(WINDOW_WIDTH, WINDOW_HEIGHT);
+				
 		theStage.setTitle("Conway's Game of Life");				// Label the stage (a window)
 		
 		Pane theRoot = new Pane();								// Create a pane within the window
+		
+		
 		
 		theGUI = new UserInterface(theRoot);					// Create the Graphical User Interface
 		
