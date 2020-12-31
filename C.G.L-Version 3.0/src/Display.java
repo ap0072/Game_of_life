@@ -1,3 +1,6 @@
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 /**
  * The Display class should provide basic operations such as 
@@ -59,14 +62,18 @@ public class Display
 			{
 				   for(int j=0;j<inputboard[0].length;j++) 
 				   {
-					   if(outputboard[i][j]==0)
+					   if(outputboard[i][j]==1)
 					   {
-						   System.out.print(".");
+						   System.out.print("*");
+//						   Rectangle rect = new Rectangle(5,5,Color.GREEN);
+//							rect.relocate(6*i, 6*j);
+//							window.getChildren().add(rect);
+//						   
 						   
 					   }
 					   else 
 					   {
-						   System.out.print("*");
+						   System.out.print(".");
 					   }
 					   
 					   if(j<inputboard[0].length-1) 

@@ -351,7 +351,7 @@ public class UserInterface {
 					
 				}
 				
-				System.out.println("length"+myarray.length);
+				System.out.println("\nlength"+myarray.length);
 				
 				/*
 				 * 
@@ -367,6 +367,24 @@ public class UserInterface {
 				}
 				
 				board1=board;
+				for(int i=0;i<board1.length;i++) 
+				{
+					   for(int j=0;j<board1[0].length;j++) 
+					   {
+						   if(board1[i][j]==1)
+						   {
+							   
+							   Rectangle rect = new Rectangle(5,5,Color.GREEN);
+								rect.relocate(6*i, 6*j);
+								window.getChildren().add(rect);
+						   }
+					   }
+				}
+//							
+				
+//				   Rectangle rect = new Rectangle(15,15,Color.GREEN);
+//					rect.relocate(75, 75);
+//					window.getChildren().add(rect);
 				 
 			 
 		}
@@ -412,37 +430,91 @@ public class UserInterface {
 	
 	
 
-	
+	/*
+	 * when the Start button clicked  Game starts executing from runSimulation method
+	 * 
+	 * 
+	 */
 	
 	public void runSimulation()
 	{
 	
 		// Use the toggle to flip back and forth between the current generation and next generation boards.
 		
-		int count=1;
-		int count1=1;
-		Display o3=new Display(100);
-		Board b= new Board(100); 
-		 
+		draw();
+//		int count=1;
+//		int count1=1;
+//		Display o3=new Display(100);
+//		Board b= new Board(100); 
+//		
+//		while(count1!=0)
+//		{
+//			 //System.out.println("\nGeneration : "+count);
+//			 
+//		
+//		for(int i=0;i<board1.length;i++) 
+//		{
+//			   for(int j=0;j<board1[0].length;j++) 
+//			   {
+//				   if(board1[i][j]==1)
+//				   {
+//					   
+//					   Rectangle rect = new Rectangle(5,5,Color.GREEN);
+//						rect.relocate(6*i, 6*j);
+//						window.getChildren().add(rect);
+//				   }
+//			   }
+//		}
+//		
+//		
+//		board1=b.nextBoard(100, board1);
+//		
+//		for(int i=0;i<board1.length;i++) 
+//		{
+//			   for(int j=0;j<board1[0].length;j++) 
+//			   {
+//				   if(board1[i][j]==1)
+//				   {
+//					   
+//					   Rectangle rect = new Rectangle(5,5,Color.GREEN);
+//						rect.relocate(6*i, 6*j);
+//						window.getChildren().add(rect);
+//				   }
+//			   }
+//		}
+//		
+//			   
+//			  
+//			   //o3.printBoard(board1,window);
+//			 
+//				//rect.relocate(6*10, 6*10);
+//				//window.getChildren().add(rect);
+//			  // board1=b.nextBoard(100, board1);
+//			  count1=b.aliveCount(board1);
+//			  count+=1;
+//			   
+//		}
+	}
+	
+	public void draw() {
+		Board b= new Board(100);
+		board1=b.nextBoard(board1.length, board1);
+		for(int i=0;i<board1.length;i++) 
+			{
+				   for(int j=0;j<board1[0].length;j++) 
+				   {
+				   if(board1[i][j]==1)
+					   {
+						   
+						   Rectangle rect = new Rectangle(5,5,Color.GREEN);
+							rect.relocate(6*i, 6*j);
+							window.getChildren().add(rect);
+					   }
+				   }
+			}
 		
-		while(count1!=0) 
-		{
-			   /*
-			    * 
-			    *With help of OOPs concept i created a object for Display class and Board class 
-			    *to print board and
-			    *to generate next board with giving current board as input 
-			    *
-			    *
-			    */ 
-			   
-			   System.out.println("\nGeneration : "+count);
-			   o3.printBoard(board1);
-			   board1=b.nextBoard(100, board1);
-			   count1=b.aliveCount(board1);
-			   count+=1;
-			   
-		}
+		
+		//board1=b.nextBoard(board1.length, board1);
 	}
        
     	
