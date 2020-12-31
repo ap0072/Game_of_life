@@ -89,10 +89,10 @@ public class UserInterface {
 	// These attributes define the Board used by the simulation and the graphical representation
 	// There are two Boards. The previous Board and the new Board.  Once the new Board has been
 	// displayed, it becomes the previous Board for the generation of the next new Board.
-	//private Board oddGameBoard = new Board();		// The Board for odd frames of the animation
+	private Board oddGameBoard = new Board();		// The Board for odd frames of the animation
 	private Pane oddCanvas = new Pane();			// Pane that holds its graphical representation
 	
-	//private Board evenGameBoard =  new Board();	// The Board for even frames of the animation
+	private Board evenGameBoard =  new Board();	// The Board for even frames of the animation
 	private Pane evenCanvas = new Pane();			// Pane that holds its graphical representation
 
 	private boolean toggle = true;					// A two-state attribute that specifies which
@@ -367,6 +367,7 @@ public class UserInterface {
 				}
 				
 				board1=board;
+				
 				for(int i=0;i<board1.length;i++) 
 				{
 					   for(int j=0;j<board1[0].length;j++) 
@@ -380,11 +381,8 @@ public class UserInterface {
 						   }
 					   }
 				}
-//							
+							
 				
-//				   Rectangle rect = new Rectangle(15,15,Color.GREEN);
-//					rect.relocate(75, 75);
-//					window.getChildren().add(rect);
 				 
 			 
 		}
@@ -441,64 +439,32 @@ public class UserInterface {
 	
 		// Use the toggle to flip back and forth between the current generation and next generation boards.
 		
+		
+
+		if(toggle)
+		{
+			toggle=false;
+			
+			oddGameBoard.nextBoard(board1.length,board1);
+		}
+		else
+		{
+			evenGameBoard.nextBoard(board1.length,board1);
+			toggle=true;
+		}
 		draw();
-//		int count=1;
-//		int count1=1;
-//		Display o3=new Display(100);
-//		Board b= new Board(100); 
-//		
-//		while(count1!=0)
-//		{
-//			 //System.out.println("\nGeneration : "+count);
-//			 
-//		
-//		for(int i=0;i<board1.length;i++) 
-//		{
-//			   for(int j=0;j<board1[0].length;j++) 
-//			   {
-//				   if(board1[i][j]==1)
-//				   {
-//					   
-//					   Rectangle rect = new Rectangle(5,5,Color.GREEN);
-//						rect.relocate(6*i, 6*j);
-//						window.getChildren().add(rect);
-//				   }
-//			   }
-//		}
-//		
-//		
-//		board1=b.nextBoard(100, board1);
-//		
-//		for(int i=0;i<board1.length;i++) 
-//		{
-//			   for(int j=0;j<board1[0].length;j++) 
-//			   {
-//				   if(board1[i][j]==1)
-//				   {
-//					   
-//					   Rectangle rect = new Rectangle(5,5,Color.GREEN);
-//						rect.relocate(6*i, 6*j);
-//						window.getChildren().add(rect);
-//				   }
-//			   }
-//		}
-//		
-//			   
-//			  
-//			   //o3.printBoard(board1,window);
-//			 
-//				//rect.relocate(6*10, 6*10);
-//				//window.getChildren().add(rect);
-//			  // board1=b.nextBoard(100, board1);
-//			  count1=b.aliveCount(board1);
-//			  count+=1;
-//			   
-//		}
 	}
 	
 	public void draw() {
-		Board b= new Board(100);
-		board1=b.nextBoard(board1.length, board1);
+		
+		Board board;
+		if(toggle){
+			board=oddGameBoard;
+		}
+		else
+		{
+			board=evenGameBoard;
+		}
 		for(int i=0;i<board1.length;i++) 
 			{
 				   for(int j=0;j<board1[0].length;j++) 
@@ -514,7 +480,7 @@ public class UserInterface {
 			}
 		
 		
-		//board1=b.nextBoard(board1.length, board1);
+		
 	}
        
     	

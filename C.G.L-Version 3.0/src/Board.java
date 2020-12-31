@@ -30,11 +30,13 @@ public class Board
 		// TODO Auto-generated constructor stub
 	}
 
-	public Board(int boardSizeWidth, String str_FileName) {
+	
+
+	public Board() {
 		// TODO Auto-generated constructor stub
-		
-		
 	}
+
+	
 
 	public int[][]  createBoard(int n) 
 	{
