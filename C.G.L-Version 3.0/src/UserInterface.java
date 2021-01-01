@@ -382,7 +382,8 @@ public class UserInterface {
 					   }
 				}
 							
-				
+				//window.getChildren().remove(board1);
+					
 				 
 			 
 		}
@@ -459,12 +460,14 @@ public class UserInterface {
 		
 		Board board;
 		if(toggle){
-			board=oddGameBoard;
+			board1=oddGameBoard.nextBoard(board1.length, board1);
 		}
 		else
 		{
-			board=evenGameBoard;
+			board1=evenGameBoard.nextBoard(board1.length, board1);
 		}
+		
+		
 		for(int i=0;i<board1.length;i++) 
 			{
 				   for(int j=0;j<board1[0].length;j++) 

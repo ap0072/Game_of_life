@@ -15,7 +15,7 @@ public class Board
 {
 
 
-	int size;
+	static int size;
 	int firstarray[][];
 
 	public Board(int size) 
