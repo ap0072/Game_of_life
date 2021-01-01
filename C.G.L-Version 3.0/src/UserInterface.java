@@ -285,34 +285,26 @@ public class UserInterface {
 		try 
 		{
 			
-			/*
-			 * 
-			 * Here i am taking this str_FileName variable as string to store the passed filename. like"test01"
-			 */
+			 
+			 //Here i am taking this str_FileName variable as string to store the passed filename. like"test01"
+			 
 				str_FileName=text_FileName.getText();
 				
 				System.out.println("File name is "+text_FileName.getText());
 				
-			/*
-			 * Here i am taking this scanner object to scan data in file.
-			 * 
-			 */
+			//Here i am taking this scanner object to scan data in file.
 				
 				Scanner scan = new Scanner((new FileReader(str_FileName)));
 				
 				
 				
-				/*
-				 * 
-				 * Here i am taking this integer arraylist  MyList			
-				 */
+				//Here i am taking this integer arraylist  MyList			
+				 
 				
 				ArrayList<Integer> MyList=new ArrayList<Integer>();
 				
-				/*
-				 * 
-				 * Here i am taking this integer board  2d array for initializing  livecells given in testfile 	
-				 */
+				//Here i am taking this integer board  2d array for initializing  livecells given in testfile 	
+				 
 				
 				int board[][] = new int[100][100];
 				
@@ -329,20 +321,11 @@ public class UserInterface {
 				
 				Integer myarray[]= new Integer[MyList.size()];
 				
-				//System.out.println(MyList);
-				
-				/*
-				 * this is converting ArrayList into a array 
-				 * 
-				 */
-				
+				 //this is converting ArrayList into a array 
 				myarray=MyList.toArray(myarray);
 				
-				/*
-				 * 
-				 * this is for loop for knowing the values in array
-				 * 		
-				 */
+				//this is for loop for knowing the values in array
+				 
 				
 				for(int j=0;j<myarray.length;j++) 
 				{
@@ -353,11 +336,7 @@ public class UserInterface {
 				
 				System.out.println("\nlength"+myarray.length);
 				
-				/*
-				 * 
-				 * this is for loop for knowing the fetching values into board 2d array
-				 * 		
-				 */
+				//this is for loop for knowing the fetching values into board 2d array
 				
 				for(int j=0;j<myarray.length-2;j+=2) 
 				 {
@@ -429,11 +408,7 @@ public class UserInterface {
 	
 	
 
-	/*
-	 * when the Start button clicked  Game starts executing from runSimulation method
-	 * 
-	 * 
-	 */
+	//when the Start button clicked  Game starts executing from runSimulation method
 	
 	public void runSimulation()
 	{
